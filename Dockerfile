@@ -1,5 +1,6 @@
 FROM nginx:1.13.5
 
+COPY scripts/init.sh /opt/init.sh
 RUN apt-get update && apt-get install certbot \
     crontab -l > mycron && \
     echo "0 0 * */2 * certbot renew" >> mycron && \
@@ -12,6 +13,4 @@ VOLUME ["/etc/nginx"]
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT ["nginx"]
-CMD ["nginx", "-g", "daemon off;"]
-
+ENTRYPOINT ["/opt/init.sh"]
