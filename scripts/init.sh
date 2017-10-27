@@ -7,4 +7,4 @@ if [ ! -d /var/www/$file ]; then
 fi
 certbot certonly --webroot -w /var/www/$file -d $file
 done
-nginx -g daemon off;
+nginx -g "daemon off;"
