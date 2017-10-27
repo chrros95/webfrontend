@@ -11,6 +11,7 @@ VOLUME ["/var/www/html"]
 VOLUME ["/etc/letsencrypt"]
 VOLUME ["/etc/nginx"]
 
+EXPOSE 80 443 8000 8001 8080 8443
 STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/opt/init.sh"]
