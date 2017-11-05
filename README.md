@@ -1,3 +1,6 @@
+# Attention
+This image is still under development. As a result, it might cause a block at letsencrypt for one week!
+
 # webfrontend
 In this repository you'll find the configuration for a docker container thats automatically renews the certs
 
