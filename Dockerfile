@@ -1,11 +1,9 @@
 FROM nginx:1.13.5
 
+RUN apt-get update && apt-get install -y certbot cron
 COPY scripts/init.sh /opt/init.sh
-RUN apt-get update && apt-get install -y certbot cron && \
-    echo '0 0 * */2 * certbot renew' >> mycron && \
-    crontab mycron && \
-    rm mycron && \
-    chmod +x /opt/init.sh
+RUN chmod +x /opt/init.sh
+
 EXPOSE 80 443 8080 8443
 VOLUME ["/var/www/html"]
 VOLUME ["/etc/letsencrypt"]
