@@ -1,10 +1,14 @@
 #!/bin/sh
-cd /etc/nginx/sites-enabled
-for file in *;
+for file in /etc/nginx/sites-enabled/*;
 do
 if [ ! -d /var/www/$file ]; then
   mkdir -p /var/www/$file
 fi
-certbot certonly --webroot -w /var/www/$file -d $file
+domain=$(basename $file)
+echo $domain
+certbot certonly --standalone -w /var/www/$domain -d $domain
+echo "0 0 * */2 * certbot renew --webroot -w /var/www/$domain -d $domain" >> mycron
 done
+crontab -r
+crontab mycron
 nginx -g "daemon off;"
