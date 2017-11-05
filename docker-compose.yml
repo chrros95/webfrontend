@@ -15,4 +15,4 @@ services:
       - "8080"
       - "8443"
     network_mode: "host"
-    restart: always
+    restart: "no"
