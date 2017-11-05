@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+  webfrontend:
+    image: chrros95/webfrontend
+    container_name: webfrontend
+    volumes:
+      - /var/docker-volumes/nginx:/etc/nginx
+      - /var/docker-volumes/web-data:/var/www
+      - /var/docker-volumes/certs:/etc/letsencrypt
+    expose:
+      - "80"
+      - "443"
+      - "8000"
+      - "8001"
+      - "8080"
+      - "8443"
+    network_mode: "host"
+    restart: always
